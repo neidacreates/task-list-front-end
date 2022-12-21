@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
 import TaskList from './components/TaskList.js';
+import Task from './components/Task.js';
 import './App.css';
 
 const TASKS = [
@@ -16,6 +18,23 @@ const TASKS = [
 ];
 
 const App = () => {
+  const [tasks, setTasks] = useState(TASKS);
+
+  const strikethroughToggle = (id) => {
+    const newTasks = TASKS.map((task) => {
+      if (task.id === id) {
+        const task = { ...task };
+        return {
+          // ...task,
+          isComplete: !task.isComplete,
+        };
+      } else {
+        return task;
+      }
+    });
+    setTasks(newTasks);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -23,7 +42,7 @@ const App = () => {
       </header>
       <main>
         <div>
-          <TaskList tasks={TASKS} />
+          <TaskList tasks={tasks} strikethroughToggle={strikethroughToggle} />
         </div>
       </main>
     </div>
