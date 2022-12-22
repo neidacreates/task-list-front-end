@@ -21,11 +21,10 @@ const App = () => {
   const [tasks, setTasks] = useState(TASKS);
 
   const strikethroughToggle = (id) => {
-    const newTasks = TASKS.map((task) => {
+    const newTasks = tasks.map((task) => {
       if (task.id === id) {
-        const task = { ...task };
         return {
-          // ...task,
+          ...task,
           isComplete: !task.isComplete,
         };
       } else {

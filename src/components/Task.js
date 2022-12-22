@@ -1,25 +1,16 @@
-import { useState } from 'react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Task.css';
 
 const Task = (props) => {
-  //   if (!props.isComplete) {
-  //     // change class name here
-  //     tasks__item__toggle--completed
-  //   } else {
-  //     tasks__item__toggle
-  //   }
-  // }
-  // const togglePresence = () => {
-  //   setIsPresent(!isPresent);
-  // };
-
+  const classNameToggle = !props.isComplete
+    ? 'tasks__item__toggle'
+    : 'tasks__item__toggle--completed';
   return (
     <li className="tasks__item">
       <button
-        className="tasks__item__toggle"
+        className={classNameToggle}
         onClick={() => {
           props.strikethroughToggle(props.id);
         }}
